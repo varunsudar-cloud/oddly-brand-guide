@@ -89,6 +89,73 @@ figcaption{font-size:12px;color:var(--grey);margin-top:9px;font-weight:300;font-
 .totop.show{opacity:1;pointer-events:auto}
 .totop:hover{background:var(--ink);color:var(--paper)}
 
+/* ================= MOBILE ================= */
+@media(max-width:760px){
+  /* kill horizontal overflow globally */
+  html,body{overflow-x:hidden}
+  .content .wrap{padding:0 22px !important}
+
+  /* --- collapse ALL inline multi-column grids to single column --- */
+  div[style*="grid-template-columns:1fr 1fr"],
+  div[style*="grid-template-columns:repeat(2"],
+  div[style*="grid-template-columns:repeat(3"],
+  div[style*="grid-template-columns:repeat(4"],
+  div[style*="grid-template-columns:2fr 1fr"]{
+    grid-template-columns:1fr !important;
+  }
+  /* strip column borders that assumed side-by-side layout */
+  div[style*="border-right:1px solid var(--line)"]{border-right:none !important;border-bottom:1px solid var(--line)}
+
+  /* --- section head scale --- */
+  .sec-title{font-size:38px !important}
+  .sec-head{padding:64px 0 40px}
+  .sec-lead{font-size:16.5px}
+  h3.big{font-size:25px}
+  .block{padding:52px 0}
+
+  /* --- type specimen panel: shrink display sizes --- */
+  div[style*="font-size:64px"]{font-size:42px !important}
+  div[style*="font-size:26px"]{font-size:21px !important}
+
+  /* --- checklists stack (already handled) + do/dont stack --- */
+  .dd{grid-template-columns:1fr}
+  .check{grid-template-columns:1fr}
+  .check div{border-right:none !important}
+
+  /* --- images: never force tall fixed heights; keep natural crops sane --- */
+  img[style*="height:300px"],img[style*="height:340px"],img[style*="height:360px"],
+  img[style*="height:420px"],img[style*="height:440px"],img[style*="height:500px"],
+  img[style*="height:520px"],img[style*="height:270px"],img[style*="height:250px"]{
+    height:auto !important; max-height:70vh; object-fit:contain !important; background:#fff;
+  }
+  /* caption-template hero (height:100%) — let it size naturally when stacked */
+  div[style*="grid-template-columns"] img[style*="height:100%"]{height:auto !important}
+
+  /* accent swatch panels keep their height (they're colour blocks, not photos) */
+  div[style*="background:#EFC974"],div[style*="background:#AF7C94"]{height:130px !important}
+
+  /* --- example/callout padding --- */
+  .example{padding:28px 22px}
+  div[style*="padding:44px 40px"]{padding:26px 22px !important}
+  div[style*="padding:38px 40px"]{padding:26px 22px !important}
+  div[style*="padding:36px 38px"]{padding:24px 20px !important}
+  div[style*="padding:34px 32px"]{padding:24px 20px !important}
+  div[style*="padding:32px 30px"]{padding:24px 20px !important}
+  div[style*="padding:30px 28px"]{padding:22px 20px !important}
+  div[style*="padding:28px 30px"]{padding:22px 20px !important}
+  div[style*="padding:64px"]{padding:34px !important}
+  div[style*="padding:58px"]{padding:0 !important}
+
+  /* opening headline */
+  h1[style*="clamp"]{font-size:40px !important}
+
+  /* divider aligns with mobile padding */
+  section + section::before{margin-left:22px;margin-right:22px}
+
+  /* totop smaller & tucked */
+  .totop{right:16px;bottom:16px;width:40px;height:40px}
+}
+
 /* ===== SIDE INDEX (same page, no column) ===== */
 :root{--sidebar-w:260px}
 .sidebar{position:fixed;top:0;left:0;width:var(--sidebar-w);height:100vh;padding:40px 24px 40px 48px;display:flex;flex-direction:column;z-index:100;background:transparent;pointer-events:none}
